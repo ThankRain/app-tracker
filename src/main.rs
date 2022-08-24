@@ -1,4 +1,10 @@
-#[macro_use] extern crate rocket;
+#![feature(byte_slice_trim_ascii)]
+
+mod crypto;
+mod test;
+
+#[macro_use]
+extern crate rocket;
 
 use rocket::{Build, Rocket};
 
@@ -9,6 +15,5 @@ fn index() -> &'static str {
 
 #[launch]
 fn rocket() -> Rocket<Build> {
-    rocket::build()
-        .mount("/", routes![index])
+    rocket::build().mount("/", routes![index])
 }
